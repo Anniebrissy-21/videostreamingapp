@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block body_block %}
+
+<div class="container d-flex align-item-center">
+    
+    <div class="w-[300px] rounded-md border mt-4">
+        <h2 class="text-2xl font-bold leading-tight text-black">
+            Streamed Video...
+             </h2>
+        <img src="{% url 'stream_video' data.id %}" alt="Video Stream">
+        
+        <div class="p-4">
+            <h1 class="inline-flex items-center text-lg font-semibold">
+              {{data.title}}
+            </h1>
+            <p class="mt-3 text-sm text-gray-600">
+              {{data.description}}
+            </p>
+
+            <p class="mt-3 text-sm text-gray-600">
+                {{data.created_date}}
+              </p>
+           
+          
+        </div>
+      </div>
+      
+   
+    
+           
+           
+          
+          
+         
+      
+   
+</div>
+
+
+{% endblock %}

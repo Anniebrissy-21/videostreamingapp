@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block body_block %}
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+      <form action="" method="post">
+        {% csrf_token %}
+      <div class="flex mt-4 ">
+        
+        <input
+          class="flex h-10 w-full rounded-md border border-black/30 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+          type="text"
+          placeholder="Search Here.."
+          name="box"
+        />
+      
+        <button
+        type="submit"
+        class="rounded-md bg-black px-3 ms-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+      >
+       Search
+      </button>
+      
+      </div>
+    </form>
+    </div>
+    <div class="col-3"></div>
+  </div>
+</div>
+
+
+ 
+
+  <div class="mx-auto grid w-full max-w-7xl items-center space-y-4 px-2 py-10 md:grid-cols-2 md:gap-6 md:space-y-0 lg:grid-cols-4">
+    {% for video in data %}
+    
+      <div class="rounded-md border">
+        <iframe width="294" height="240" src="{{ video.video_url }}" frameborder="0" allowfullscreen></iframe>
+        <div class="p-4">
+          <h1 class="inline-flex items-center text-lg font-semibold">
+            {{video.title}}
+          </h1>
+          <p class="mt-3 text-sm text-gray-600">
+            {{video.description}}
+          </p>
+          <p class="mt-3 text-sm text-gray-600">
+            {{video.created_date}}
+          </p>
+          <a
+          href="{% url 'video-detail' video.id %}"
+          type="submit"
+          class="mt-4 ms-5 rounded-sm bg-black px-2.5 py-1 text-[10px] font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+        > 
+            stream
+        </a>
+          <!-- <h1>{{ video.title }}</h1>
+        <img src="{% url 'stream_video' video.id %}" alt="Video Stream"> -->
+         
+        </div>
+      </div>
+      
+    
+    
+    {% endfor %}
+  </div>
+  
+  
+    <!-- <div class="w-[300px] rounded-md border">
+        <video width="320" height="240" controls="controls">
+            <source src="{{ video.video_url.url }}" type="video/mp4">
+            
+        </video>
+        
+        <div class="p-4">
+          <h1 class="text-lg font-semibold">{{video.title}}</h1>
+          <p class="mt-3 text-sm text-gray-600">
+         <strong>Desciption</strong>  {{video.description}}
+          </p>
+          
+        </div>
+      </div> -->
+  
+
+
+
+
+{% endblock %}

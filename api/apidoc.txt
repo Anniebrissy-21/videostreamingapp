@@ -1,0 +1,112 @@
+1. api for registering new user
+
+        url: http://127.0.0.1:8000/api/register/
+        method : post
+        data :
+            {
+                username:annie
+                email:annie@gmail.com
+                password : annie@123
+            }
+        authoization: nill
+
+===========================================================
+
+2. api for fetching token
+
+    url: http://127.0.0.1:8000/api/token/
+    method: post
+    data:
+        {
+            username: annie
+            password: annie@123
+        }
+    authoization: nill
+
+============================================================
+
+3. api for creating an profile
+
+    url: http://127.0.0.1:8000/api/profiles/
+    method: post
+    data : {
+        dob
+        profile_pic
+        gender
+        address
+        phone
+    }
+    authorization: token
+
+============================================================
+
+4. api for  profile detail
+
+    url: http://127.0.0.1:8000/api/profiles/{id}/
+    method: get
+    data:nill
+    authorization: token
+
+
+===================================================================
+
+5. api for updating an profile
+
+    url: http://127.0.0.1:8000/api/profiles/{id}/
+    method: put
+    data :
+        {
+        dob
+        profile_pic
+        gender
+        address
+        phone
+        }
+    authoization: token
+
+======================================================================
+
+6. api for creating a video
+
+    url: http://127.0.0.1:8000/api/videos/
+    method : post
+    data: {
+        title
+        video_url
+        description
+    }
+    authorization: token
+
+========================================================================
+
+7. api for listing all videos
+
+    url: http://127.0.0.1:8000/api/videos/
+    method: get
+    data: nill
+    authoization: token
+    
+=======================================================================
+
+8. api for updating a video
+
+    url: http://127.0.0.1:8000/api/videos/{id}/
+    method:put
+    data:{
+        title
+        video_url
+        description
+    }
+    authorization:token
+
+========================================================================
+
+9. api for deleting a video
+
+    url: http://127.0.0.1:8000/api/videos/{id}/
+    method:delete
+    data:nill
+    authoization:token
+
+==========================================================================
+

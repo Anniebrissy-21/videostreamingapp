@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+
+{% block body_block %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+          <div class="container" >
+            <h2 class="text-2xl font-bold leading-tight text-black text-center">
+              My Profile...
+            </h2>
+            <div class="w-[300px] rounded-md border mt-3">
+                {% if data.profile_pic %}
+
+                <img 
+                  src="{{data.profile_pic.url}}"
+                  alt="Laptop"
+                  class="h-[200px] w-full rounded-t-md "
+                />
+
+                {% endif %}
+                <div class="p-4">
+                  <h1 class="inline-flex items-center text-lg font-semibold">
+                   {{request.user.username}}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="h-4 w-4"
+                    >
+                      <line x1="7" y1="17" x2="17" y2="7"></line>
+                      <polyline points="7 7 17 7 17 17"></polyline>
+                    </svg>
+                  </h1>
+                  <p class="mt-3 text-sm text-gray-600">
+                    <strong>Email Address: </strong>{{request.user.email}}
+                  </p>
+                  <p class="mt-3 text-sm text-gray-600">
+                    <strong>DOB: </strong>{{data.dob}}
+                  </p>
+                  <p class="mt-3 text-sm text-gray-600">
+                   <strong>Gender: </strong> {{data.gender}}
+                  </p>
+                  <p class="mt-3 text-sm text-gray-600">
+                   <strong>Address: </strong> {{data.address}}
+                  </p>
+                  <p class="mt-3 text-sm text-gray-600">
+                   <strong>Phone Number: </strong> {{data.phone}}
+                  </p>
+
+                  </div>
+                  <a
+                  href="{% url 'profile-edit' request.user.profile.id %}"
+                    type="submit"
+                    class="mt-4 w-full rounded-sm bg-black px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black text-center"
+                  >
+                    Edit
+                </a>
+                </div>
+              </div>
+              
+        </div>
+        <div class="col-4"></div>
+    </div>
+    
+    
+</div>
+<div class="container" style="margin-top: 100px;">
+<h2 class="text-2xl font-bold leading-tight text-black text-center">
+  My Videos...
+</h2>
+
+
+<div class="mx-auto grid w-full max-w-7xl items-center space-y-4 px-2 py-10 md:grid-cols-2 md:gap-6 md:space-y-0 lg:grid-cols-4">
+  {% for v in videos %}
+  
+    <div class="rounded-md border">
+
+      <iframe width="294" height="240" src="{{ v.video_url }}" frameborder="0" allowfullscreen></iframe>
+      
+      <div class="p-4">
+        <h1 class="inline-flex items-center text-lg font-semibold">
+          {{v.title}}
+        </h1>
+        <p class="mt-3 text-sm text-gray-600">
+          {{v.description}}
+        </p>
+        <p class="mt-3 text-sm text-gray-600">
+          {{v.created_date}}
+        </p>
+              
+    <a
+      href="{% url 'video-edit' v.id %}"
+      type="submit"
+      class="mt-4 rounded-sm bg-black px-2.5 py-1 text-[10px] font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+    >
+          Edit
+    </a>
+    <a
+      href="{% url 'video-delete' v.id %}"
+      type="submit"
+      class="mt-4 ms-5 rounded-sm bg-black px-2.5 py-1 text-[10px] font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+    > 
+        Delete
+    </a>
+        
+    <h1>{{ v.name }}</h1>
+    <img src="{% url 'stream_video' v.id %}" alt="Video Stream">
+      </div>
+    </div>
+    
+  
+  
+  {% endfor %}
+</div>
+
+{% endblock %}
